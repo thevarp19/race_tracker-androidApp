@@ -30,15 +30,7 @@ class RaceParticipant(
     private val progressIncrement: Int = 1,
     private val initialProgress: Int = 0
 ) {
-    var currentProgress by mutableStateOf(initialProgress)
-        private set
 
-    suspend fun run() {
-        while (currentProgress < maxProgress) {
-            delay(progressDelayMillis)
-            currentProgress += progressIncrement
-        }
-    }
 
 
     init {
@@ -52,6 +44,12 @@ class RaceParticipant(
     var currentProgress by mutableStateOf(initialProgress)
         private set
 
+    suspend fun run() {
+        while (currentProgress < maxProgress) {
+            delay(progressDelayMillis)
+            currentProgress += progressIncrement
+        }
+    }
     /**
      * Regardless of the value of [initialProgress] the reset function will reset the
      * [currentProgress] to 0

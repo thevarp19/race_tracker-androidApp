@@ -64,10 +64,15 @@ fun RaceTrackerApp() {
     }
     var raceInProgress by remember { mutableStateOf(false) }
 
-    LaunchedEffect(playerOne, playerTwo) {
-        playerOne.run()
-        playerTwo.run()
+    if (raceInProgress) {
+        LaunchedEffect(playerOne, playerTwo) {
+            playerOne.run()
+            playerTwo.run()
+            raceInProgress = false
+        }
+
     }
+
 
 
     RaceTrackerScreen(
